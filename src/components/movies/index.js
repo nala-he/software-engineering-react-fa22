@@ -5,7 +5,7 @@ const Movies = () => {
   const [title, setTitle] = useState('Avatar');
   const [movies, setMovies] = useState([]);
   const searchForMovie = () => {
-    fetch(`https://www.omdbapi.com/?s=${title}&apikey=852159f0`)
+    fetch(`https://www.omdbapi.com/?s=${title}&apikey=omdb_api_key`)
       .then(response => response.json())
       .then(results => setMovies(results.Search))
   }

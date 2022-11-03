@@ -1,5 +1,5 @@
 import axios from "axios";
-// const BASE_URL = "https://cs5500-01-sp22.herokuapp.com/api";
+// const BASE_URL = "http://a2-env.eba-icm2q6vp.us-east-1.elasticbeanstalk.com/";
 const BASE_URL = "http://localhost:4000/api";
 
 const LOGIN_API = `${BASE_URL}/login`;

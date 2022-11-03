@@ -1,6 +1,7 @@
 import {
   createUser,
-  deleteUsersByUsername, findAllUsers,
+  deleteUsersByUsername,
+  findAllUsers,
   findUserById
 } from "../services/users-service";
 
@@ -36,7 +37,6 @@ describe('createUser', () => {
 });
 
 describe('deleteUsersByUsername', () => {
-
   // sample user to delete
   const sowell = {
     username: 'thommas_sowell',
@@ -44,7 +44,7 @@ describe('deleteUsersByUsername', () => {
     email: 'compromise@solutions.com'
   };
 
-  // setup the tests before verification
+  // set up the tests before verification
   beforeAll(() => {
     // insert the sample user we then try to remove
     return createUser(sowell);
@@ -95,7 +95,7 @@ describe('findUserById',  () => {
     expect(newUser.email).toEqual(adam.email);
 
     // retrieve the user from the database by its primary key
-    const existingUser = await findUserById(newUser._id);
+    const existingUser = await findUserById(newUser.id);
 
     // verify retrieved user matches parameter user
     expect(existingUser.username).toEqual(adam.username);
@@ -125,17 +125,15 @@ describe('findAllUsers',  () => {
   );
 
   // clean up after ourselves
-  afterAll(() =>
-    // delete the users we inserted
-    usernames.map(username =>
-      deleteUsersByUsername(username)
-    )
-  );
+  afterAll(async () => {
+     // delete the users we inserted
+    return Promise.all(usernames.map(username =>
+                                         deleteUsersByUsername(username)))
+  });
 
   test('can retrieve all users from REST API', async () => {
     // retrieve all the users
     const users = await findAllUsers();
-
     // there should be a minimum number of users
     expect(users.length).toBeGreaterThanOrEqual(usernames.length);
 
@@ -149,6 +147,7 @@ describe('findAllUsers',  () => {
       expect(user.username).toEqual(username);
       expect(user.password).toEqual(`${username}123`);
       expect(user.email).toEqual(`${username}@stooges.com`);
+
     });
   });
 });

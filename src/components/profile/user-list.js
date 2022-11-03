@@ -8,8 +8,8 @@ export const UserList = ({users, deleteUser}) => {
         users.map(user => {
           return (
             <Link className="list-group-item"
-                  key={user._id}
-                  to={`/home/${user._id}`}>
+                  key={user.id}
+                  to={`/home/${user.id}`}>
           <span className="fs-3">
             {user.username}
           </span>

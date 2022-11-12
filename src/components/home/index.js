@@ -43,6 +43,7 @@ const Home = () => {
             </div>
             <div className="p-2 w-100">
               <textarea
+                  value={tuit}
                   placeholder="What's happening?"
                   onChange={(e) =>
                       setTuit(e.target.value)}

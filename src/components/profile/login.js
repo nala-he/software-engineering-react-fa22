@@ -28,7 +28,6 @@ export const Login = () => {
   const login = async () => {
       const user = await service.login(loginUser)
           .catch(e => alert(e));
-      console.log(user);
       dispatch(updateProfile(user));
       navigate('/profile/mytuits');
   };

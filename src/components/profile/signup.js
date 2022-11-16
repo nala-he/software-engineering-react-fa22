@@ -11,11 +11,9 @@ const Signup = () => {
     const dispatch = useDispatch();
     const signup = async () => {
         const user = await service.signup(newUser)
-            .then(() => {
-                dispatch(updateProfile(user));
-                navigate('/profile')
-            })
             .catch(e => alert(e));
+            dispatch(updateProfile(user));
+            navigate('/profile');
     }
 
     return (

@@ -27,7 +27,7 @@ const Profile = () => {
 
   return(
       <div>
-        <h4>{profile.username} {profile.id}</h4>
+        <h4>{profile.username}</h4>
         <h6>@{profile.username}</h6>
         <button className="btn btn-primary mb-5"
             onClick={logout}>

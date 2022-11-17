@@ -1,7 +1,7 @@
 import {
     userTogglesTuitLikes,
     userTogglesTuitDislikes,
-    userUnlikesTuit
+    userUnlikesTuit, countHowManyLikedTuit
 } from "../services/likes-service";
 import {createUser, deleteUsersByUsername} from "../services/users-service";
 import {createTuit, deleteTuit} from "../services/tuits-service";
@@ -32,14 +32,16 @@ describe('userTogglesTuitLikes', () => {
     test('can toggle tuit likes status with REST API', async () => {
         // insert new user in the database
         const newUser = await createUser(sampleUser);
-        // const newTuit = await createTuit(newUser._id, sampleTuit);
-        // await userTogglesTuitLikes(newUser._id, newTuit._id);
-        //
-        // // verify that newUser likes the tuit
-        // expect(newTuit.stats.likes).toEqual(1);
-        //
-        // // remove any likes or tuits we created
-        // await userUnlikesTuit(newUser._id, newTuit._id);
-        // await deleteTuit(newTuit._id);
+        const newTuit = await createTuit(newUser.id, sampleTuit);
+
+        const status = await userTogglesTuitLikes(newUser.id, newTuit._id);
+        // const likes = await countHowManyLikedTuit(newUser.id, newTuit._id);
+        // verify that newUser likes the tuit successfully
+        expect(status).toEqual("OK");
+        // expect(likes).toEqual(1);
+
+        // remove any likes or tuits we created
+        await userUnlikesTuit(newUser.id, newTuit._id);
+        await deleteTuit(newTuit._id);
     });
 });

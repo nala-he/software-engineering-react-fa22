@@ -23,3 +23,9 @@ export const userUnlikesTuit = (uid, tid) =>
 export const userUndislikesTuit = (uid, tid) =>
     api.delete(`${USERS_API}/${uid}/dislikes/${tid}`)
         .then(response => response.data);
+
+export const countHowManyLikedTuit = (uid, tid) =>
+    api.get(`${USERS_API}/${uid}/likes/${tid}`)
+
+export const countHowManyDislikedTuit = (uid, tid) =>
+    api.get(`${USERS_API}/${uid}/dislikes/${tid}`)

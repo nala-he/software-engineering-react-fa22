@@ -24,6 +24,7 @@ const Tuits = ({tuits = [], deleteTuit, refreshTuits}) => {
               <Tuit key={tuit._id}
                     deleteTuit={deleteTuit}
                     likeTuit={likeTuit}
+                    dislikeTuit={dislikeTuit}
                     tuit={tuit}/>)
         }
       </ul>

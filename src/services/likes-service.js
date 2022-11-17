@@ -14,3 +14,11 @@ export const userTogglesTuitLikes = (uid, tid) =>
 export const userTogglesTuitDislikes = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/dislikes/${tid}`)
         .then(response => response.data);
+
+export const userUnlikesTuit = (uid, tid) =>
+    api.delete(`${USERS_API}/${uid}/likes/${tid}`)
+        .then(response => response.data);
+
+export const userUndislikesTuit = (uid, tid) =>
+    api.delete(`${USERS_API}/${uid}/dislikes/${tid}`)
+        .then(response => response.data);

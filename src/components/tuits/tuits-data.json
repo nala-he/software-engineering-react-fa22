@@ -11,7 +11,8 @@
     "stats": {
       "replies": 123,
       "retuits": 234,
-      "likes": 345
+      "likes": 345,
+      "dislikes": 1
     }
   },
   {
@@ -26,7 +27,9 @@
     "stats": {
       "replies": 123,
       "retuits": 234,
-      "likes": 345
+      "likes": 345,
+      "dislikes": 2
+
     }
   },
   {
@@ -41,7 +44,8 @@
     "stats": {
       "replies": 123,
       "retuits": 234,
-      "likes": 345
+      "likes": 345,
+      "dislikes": 3
     }
   }
 ]

@@ -10,6 +10,12 @@ const Tuits = ({tuits = [], deleteTuit, refreshTuits}) => {
             .then(refreshTuits)
             .catch(e => alert(e))
 
+    const dislikeTuit = (tuit) =>
+        likesService
+            .userTogglesTuitDislikes("me", tuit._id)
+            .then(refreshTuits)
+            .catch(e => alert(e))
+
     return (
     <div>
       <ul className="ttr-tuits list-group">

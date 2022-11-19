@@ -33,3 +33,7 @@ export const countHowManyLikedTuit = (tid) =>
 export const countHowManyDislikedTuit = (tid) =>
     api.get(`${TUITS_API}/${tid}/dislikes/count`)
         .then(response => response.data);
+
+export const findTuitsUserLiked = (userId) =>
+    api.get(`${USERS_API}/${userId}/likes`)
+        .then(response => response.data);

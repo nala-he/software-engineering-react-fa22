@@ -1,8 +1,8 @@
 import axios from "axios";
 import {HashRouter} from "react-router-dom";
 import {screen, render} from "@testing-library/react";
-import {userTogglesTuitLikes} from "../services/likes-service";
-import {deleteTuit, findAllTuits} from "../services/tuits-service";
+import {userTogglesTuitDislikes, userTogglesTuitLikes} from "../services/likes-service";
+import {createTuit, deleteTuit, findAllTuits} from "../services/tuits-service";
 import Tuits from "../components/tuits";
 
 const MOCKED_USERS = [
@@ -39,3 +39,32 @@ test('tuits render async likes and dislikes count', async () => {
     expect(disikes[0]).toBeInTheDocument();
 })
 
+describe('tuit dislikes renders mocked', () => {
+    beforeAll(() => {
+        jest.spyOn(axios, 'get').mockImplementation();
+    })
+
+    afterAll(() => {
+        jest.restoreAllMocks()
+    })
+
+    test('dislikes renders mocked', async () => {
+        axios.get.mockImplementation(() =>
+                                         Promise.resolve({data: {tuits: MOCKED_TUITS,
+                                             users: MOCKED_USERS}}))
+        // for (let i = 0; i < MOCKED_TUITS.length; i++) {
+        //     await userTogglesTuitDislikes(MOCKED_USERS[i].id, MOCKED_TUITS[i]._id);
+        // }
+        const response = await findAllTuits();
+        const tuits = response.tuits;
+
+        render(
+            <HashRouter>
+                <Tuits tuits={tuits} deleteTuit={deleteTuit}/>
+            </HashRouter>
+        );
+
+        const dislikes = screen.getAllByText(/1/i);
+        expect(dislikes[0]).toBeInTheDocument();
+    })
+});

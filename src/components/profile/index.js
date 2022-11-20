@@ -91,6 +91,11 @@ const Profile = () => {
                                 className={`nav-link ${active === 'mylikes' ? 'active' : ''}`}>
                               Likes</Link>
                       </li>
+                      <li className="nav-item">
+                          <Link to="/profile/dislikes"
+                                className={`nav-link ${active === 'dislikes' ? 'active' : ''}`}>
+                              Dislikes</Link>
+                      </li>
                   </ul>
               </div>
           </div>
@@ -103,6 +108,8 @@ const Profile = () => {
               {/*       element={<Media/>}/>*/}
               <Route path="/mylikes"
                      element={<MyLikes/>}/>
+              <Route path="/dislikes"
+                     element={<MyDislikes/>}/>
           </Routes>
           <button className="btn btn-primary mb-5"
                   onClick={logout}>Logout

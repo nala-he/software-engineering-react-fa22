@@ -1,6 +1,6 @@
 import * as service from "../../services/auth-service"
 import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Routes, Route} from "react-router-dom";
 import MyTuits from "./my-tuits";
 // import TuitsAndReplies
@@ -11,6 +11,7 @@ import MyLikes from "./my-likes";
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
+
   useEffect(async () => {
     try {
       const user = await service.profile();
@@ -24,6 +25,9 @@ const Profile = () => {
     service.logout()
         .then(() => navigate('/login'));
   }
+  const pathname = useLocation();
+  const paths = pathname.split('/');
+  let active = paths[paths.length-1];
 
   return(
       <div className="ttr-profile">
@@ -38,13 +42,11 @@ const Profile = () => {
                                src="../images/nasa-3.png"/>
                       </div>
                   </div>
+
                   <Link to="/profile/edit"
                         className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
                       Edit profile
                   </Link>
-                  <button className="btn btn-primary mb-5"
-                          onClick={logout}>
-                      Logout</button>
               </div>
 
               <div className="p-2">
@@ -71,22 +73,22 @@ const Profile = () => {
                   <ul className="mt-4 nav nav-pills nav-fill">
                       <li className="nav-item">
                           <Link to="/profile/mytuits"
-                                className="nav-link active">
+                                className={`nav-link ${active === 'mytuits' ? 'active' : ''}`}>
                               Tuits</Link>
                       </li>
                       <li className="nav-item">
                           <Link to="/profile/tuits-and-replies"
-                                className="nav-link">
+                                className={`nav-link ${active === 'tuits-and-replies' ? 'active' : ''}`}>
                               Tuits & replies</Link>
                       </li>
                       <li className="nav-item">
                           <Link to="/profile/media"
-                                className="nav-link">
+                                className={`nav-link ${active === 'media' ? 'active' : ''}`}>
                               Media</Link>
                       </li>
                       <li className="nav-item">
                           <Link to="/profile/mylikes"
-                                className="nav-link">
+                                className={`nav-link ${active === 'mylikes' ? 'active' : ''}`}>
                               Likes</Link>
                       </li>
                   </ul>
@@ -102,6 +104,9 @@ const Profile = () => {
               <Route path="/mylikes"
                      element={<MyLikes/>}/>
           </Routes>
+          <button className="btn btn-primary mb-5"
+                  onClick={logout}>Logout
+          </button>
       </div>
   );
 };

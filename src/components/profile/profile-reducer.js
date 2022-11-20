@@ -7,7 +7,8 @@ const profileSlice = createSlice({
                                          updateProfile(state, action) {
                                              return {
                                                  ...state,
-                                                 ...action.payload}
+                                                 ...action.payload
+                                             }
                                          },
                                      }
                                  });

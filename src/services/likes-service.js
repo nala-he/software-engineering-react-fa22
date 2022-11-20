@@ -19,21 +19,21 @@ export const userTogglesTuitDislikes = (uid, tid) =>
         .then(response => response.data);
 
 export const userUnlikesTuit = (uid, tid) =>
-    api.delete(`${USERS_API}/${uid}/likes/${tid}`)
+     api.delete(`${USERS_API}/${uid}/likes/${tid}`)
         .then(response => response.data);
 
 export const userUndislikesTuit = (uid, tid) =>
-    api.delete(`${USERS_API}/${uid}/dislikes/${tid}`)
+     api.delete(`${USERS_API}/${uid}/dislikes/${tid}`)
         .then(response => response.data);
 
 export const countHowManyLikedTuit = (tid) =>
-    api.get(`${TUITS_API}/${tid}/likes/count`)
+     api.get(`${TUITS_API}/${tid}/likes/count`)
         .then(response => response.data);
 
 export const countHowManyDislikedTuit = (tid) =>
-    api.get(`${TUITS_API}/${tid}/dislikes/count`)
+     api.get(`${TUITS_API}/${tid}/dislikes/count`)
         .then(response => response.data);
 
 export const findTuitsUserLiked = (userId) =>
-    api.get(`${USERS_API}/${userId}/likes`)
+     api.get(`${USERS_API}/${userId}/likes`)
         .then(response => response.data);

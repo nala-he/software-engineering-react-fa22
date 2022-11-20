@@ -25,7 +25,7 @@ const Profile = () => {
     service.logout()
         .then(() => navigate('/login'));
   }
-  const pathname = useLocation();
+  const {pathname} = useLocation();
   const paths = pathname.split('/');
   let active = paths[paths.length-1];
 
